@@ -4,158 +4,101 @@ habitatfpsbooster = {}
 
 include("baristaner/config.lua")
 
-local y = ScrH()/3
-local x = 15
-local bum = (245-40)
 
-surface.CreateFont( "bum", {
-	font = "CloseCaption_BoldItalic",
-	extended = false,
-	size =  ScreenScale(9),
-	weight = 500,
-	blursize = 0,
-	scanlines = 0,
-	antialias = true,
-	underline = false,
-	italic = false,
-	strikeout = false,
-	symbol = false,
-	rotary = false,
-	shadow = false,
-	additive = false,
-	outline = false,
-})
 
+local function fpsboostermenu()
+local fps = vgui.Create( "DFrame" )
+fps:SetPos( 5, 5 )
+fps:SetSize( 300, 120 )
+fps:SetTitle( "  " )
+fps:SetVisible( true )
+fps:SetDraggable( true )
+fps:Center()
+fps:ShowCloseButton( false )
+fps:MakePopup()
+
+local DScrollPanel = vgui.Create( "DScrollPanel", fps )
+DScrollPanel:Dock( FILL )
+
+
+local fpsbuton = DScrollPanel:Add( "DButton" )
+fpsbuton:SetText( "FPS Arttır")
+fpsbuton:Dock( TOP )
+fpsbuton:SetColor(Color(255, 255, 255))
+fpsbuton:DockMargin( 0, 0, 0, 5 )
+
+local fpsbuton2 = DScrollPanel:Add( "DButton" )
+fpsbuton2:SetText( "FPS Arttırmayı Geri Al")
+fpsbuton2:SetColor(Color(255, 255, 255))
+fpsbuton2:Dock( TOP )
+fpsbuton2:DockMargin( 0, 0, 0, 5 )
+
+local fpsbuton3 = DScrollPanel:Add( "DButton" )
+fpsbuton3:SetText( "İnterneti Optimize Et")
+fpsbuton3:SetColor(Color(255, 255, 255))
+fpsbuton3:Dock( TOP )
+fpsbuton3:DockMargin( 0, 0, 0, 5 )
+
+
+fps.Paint = function(s,w,h )
+  draw.RoundedBox( 0, 0, 0,w,h,Color(0,0,0,255))
+  draw.RoundedBox( 0, 2, 2,w-4,h-4,Color(50,50,50,255))
+end
+
+local kapat2 = vgui.Create( "DButton", fps ) 
+kapat2:SetText( "X" )         
+kapat2:SetPos( 270, 0 )
+kapat2:SetColor(Color(255, 255, 255))         
+kapat2:SetSize( 30, 25 )          
+kapat2.DoClick = function()       
+  fps:Close()  
+end
+
+fpsbuton.DoClick = function()
+   RunConsoleCommand("habitatfpsboost")
+end
+
+fpsbuton2.DoClick = function()
+  RunConsoleCommand("habitatfpsboostgerial")
+end
+
+fpsbuton3.DoClick = function()
+  RunConsoleCommand("habitatfpsboostinternet")
+end
+
+
+
+kapat2.Paint = function(s,w,h )
+  draw.RoundedBox( 0, 0, 0,w,h,Color(0,0,0,255))
+  draw.RoundedBox( 0, 2, 2,w-4,h-4,Color(139,0,0,255))
+end
+
+fpsbuton.Paint = function(s,w,h )
+  draw.RoundedBox( 0, 0, 0,w,h,Color(0,0,0,255))
+  draw.RoundedBox( 0, 2, 2,w-4,h-4,habitatfpsbooster.butonrengi)
+end
+
+fpsbuton2.Paint = function(s,w,h )
+  draw.RoundedBox( 0, 0, 0,w,h,Color(0,0,0,255))
+  draw.RoundedBox( 0, 2, 2,w-4,h-4,habitatfpsbooster.butonrengi)
+end
+
+fpsbuton3.Paint = function(s,w,h )
+  draw.RoundedBox( 0, 0, 0,w,h,Color(0,0,0,255))
+  draw.RoundedBox( 0, 2, 2,w-4,h-4,habitatfpsbooster.butonrengi)
+end
+
+
+end
 
 hook.Add("OnPlayerChat", "fpsmenu", function(ply, strText)
     if (ply ~= LocalPlayer()) then return end
     strText = string.lower(strText) -- 
-
-    --
     if (strText == "!fps") then
-           local gunluk = vgui.Create("DFrame")
-        gunluk:SetPos(ScrW() * 0.33, ScrH() * 0.33)
-        gunluk:SetSize(ScrW() * 0.0 + 0, ScrH() * 0.0 + 0)
-        gunluk:SetTitle("Habitat FPS BOOSTER")
-        gunluk:SetDraggable(true)
-        gunluk:MakePopup()
-        gunluk:ShowCloseButton(true)
-        gunluk:Center(true)
-        gunluk:SizeTo( 510, 300, 1, 0, 4)
-
-        gunluk.Paint = function( self, w, h ) 
-    draw.RoundedBox( 12, 0, 0, w, h, habitatfpsbooster.fpsboosterarkaplanrengi )
-end
-        
-            local blur = vgui.Create("DFrame")
-            blur:SetSize(2,1)
-            blur:SetDraggable(false)
-            blur:SetBackgroundBlur(true)
-            gunluk.OnRemove = function() 
-            blur:Close()
-        end
-
-        local button = vgui.Create("DButton", gunluk)
-        button:SetPos(50, 50, ScrW() / 0.5, ScrH() / 0.1)
-        button:SetSize(180, 50)
-        button:SetColor( Color( 0,0,0 ) )
-        button.Paint = function(s , w , h)
-        draw.RoundedBox(6,0,0,w , h,Color(255, 255, 255, 255))
-end
-        button:SetFont("bum")
-        button:SetText("FPS ARTTIR")
-        button:SetConsoleCommand("habitatfpsboost")
-
-
-
-   local button = vgui.Create("DButton", gunluk)
-    button:SetPos(50, 150, ScrW() / 0.5, ScrH() / 0.1)
-    button:SetSize(180, 50)
-    button:SetColor(Color(0, 0, 0))
-
-    button.Paint = function(s, w, h)
-        draw.RoundedBox(6, 0, 0, w, h, Color(255, 255, 255, 255))
+    fpsboostermenu()
     end
+  end)
 
-    button:SetFont("bum")
-    button:SetText("FPS GERI AL")
-    button:SetConsoleCommand("habitatfpsboostgerial")
-
-
-   local button = vgui.Create("DButton", gunluk)
-    button:SetPos(50, 250, ScrW() / 0.5, ScrH() / 0.1)
-    button:SetSize(180, 50)
-    button:SetColor(Color(0, 0, 0))
-
-    button.Paint = function(s, w, h)
-        draw.RoundedBox(6, 0, 0, w, h, Color(255, 255, 255, 255))
-    end
-
-    button:SetFont("bum")
-    button:SetText("INTERNET OPTIMIZE ET")
-    button:SetConsoleCommand("habitatfpsboostinternet")
-    
-
-   local yazi = vgui.Create( "DLabel", gunluk )
-   yazi:SetPos( 235, 20 )
-   yazi:SetSize(250, 50)
-   yazi:SetFont( "BudgetLabel" )
-   yazi:SetText( "FPS BOOSTER FPS'INI YUKSELTIR" )
-
-   local yazi = vgui.Create( "DLabel", gunluk )
-   yazi:SetPos( 235, 40 )
-   yazi:SetSize(250, 50)
-   yazi:SetFont( "BudgetLabel" )
-   yazi:SetText( "AKTIVE OLDUGUNDA DONMA OLABILIR" )
-
-   local yazi = vgui.Create( "DLabel", gunluk )
-   yazi:SetPos( 235, 60 )
-   yazi:SetSize(290, 50)
-   yazi:SetFont( "BudgetLabel" )
-   yazi:SetText( "AYARLARI BEGENMEDIYSEN GERI ALABILIRSIN" )
-
-    local yazi = vgui.Create( "DLabel", gunluk )
-   yazi:SetPos( 235, 80 )
-   yazi:SetSize(250, 50)
-   yazi:SetFont( "BudgetLabel" )
-   yazi:SetText( "KALITE KAYBETMEMEK ICIN AYARLARDAN" )
-  
-   local yazi = vgui.Create( "DLabel", gunluk )
-   yazi:SetPos( 235, 100 )
-   yazi:SetSize(250, 50)
-   yazi:SetFont( "BudgetLabel" )
-   yazi:SetText( "MODELLERI YUKSEGE CEKEBILIRSIN" )
-
-    local yazi = vgui.Create( "DLabel", gunluk )
-   yazi:SetPos( 235, 100 )
-   yazi:SetSize(250, 50)
-   yazi:SetFont( "BudgetLabel" )
-   yazi:SetText( "MODELLERI YUKSEGE CEKEBILIRSIN" )
-   
-
-
-   local icon = vgui.Create( "DModelPanel", gunluk )
-    function icon:LayoutEntity( Entity ) return end
-    icon:SetPos(250, 140 )
-    icon:SetSize( 200,200 )
-    icon:SetFOV(12)
-    icon:SetModel( LocalPlayer():GetModel() )
-    icon:SetCamPos( Vector(85,0,65))
-    icon:SetLookAt( Vector(0,0,62))
-    icon:SetAnimated(true)
-            
-            icon = vgui.Create("DModelPanel", gunluk)
-            icon:SetModel( LocalPlayer():GetModel())
-            function icon:LayoutEntity( Entity ) return end
-            icon:SetPos(1190, ScrH() * 0.90)
-            icon:SetAnimated(false)
-            icon:SetSize( 150,150 )
-            icon:SetCamPos( Vector(85,-20,65))
-            icon:SetLookAt( Vector(0,0,62))
-
-end
-
-end)    
 
 
 
