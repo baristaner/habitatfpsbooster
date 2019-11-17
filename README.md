@@ -1,6 +1,6 @@
 ![fpsbooster](https://user-images.githubusercontent.com/26165265/52517353-675f9f00-2c4b-11e9-8ffa-49f78c83196d.jpg)
 
-![config](https://user-images.githubusercontent.com/26165265/58371554-e6d35e80-7f1a-11e9-83f0-294da95442d9.png)
+![config](https://media.discordapp.net/attachments/503597051322302467/645638843151679488/unknown.png?width=571&height=401)
 
 Türkçe 
 
