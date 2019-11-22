@@ -10,7 +10,7 @@ habitatfpsbooster = {}
 
 include("baristaner/config.lua")
 
-if habitatfpsbooster.enablefog then
+if habitatfpsbooster.enableserverfog then
     entFog = false
 
     function DedrussFPSfix()
