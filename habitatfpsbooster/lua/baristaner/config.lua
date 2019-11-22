@@ -3,7 +3,10 @@ AddCSLuaFile()
 
 --𝐻𝒶𝒷𝒾𝓉𝒶𝓉 𝐹𝒫𝒮 𝐵𝑜𝑜𝓈𝓉𝑒𝓇--
 -----------------------------------------------------------------------------------------------
-habitatfpsbooster.enablefog = false -- [RESTART GEREKTIRIR] büyük harita kullanıyorsan uzağı renderlamaz sis oluşturur bu ayar bazı maplerde sorun çıkarabilir eğer haritana uymuyorsa false yap
+habitatfpsbooster.multicorerendering = true -- Oyuncu sunucuya girdiğinde gelen ekran
+habitatfpsbooster.enableserverfog = false
+habitatfpsbooster.tfaguns = true -- Sunucuda TFA Guns var ise true
+habitatfpsbooster.enablefog = true -- [RESTART GEREKTIRIR] büyük harita kullanıyorsan uzağı renderlamaz sis oluşturur bu ayar bazı maplerde sorun çıkarabilir eğer haritana uymuyorsa false yap
 habitatfpsbooster.fpsboosteractivemsg = "[HabitatFPSBooster] FPS Booster Aktif Donma Olucaktir"
 habitatfpsbooster.fpsboostergerialmsg = "[HabitatFPSBooster] FPS Ayarlari Geriye Donduruldu"
 habitatfpsbooster.fpsboosterinternetmsg = "[HabitatFPSBooster] Internet Optimize Edildi"
@@ -11,7 +14,7 @@ habitatfpsbooster.fpsboostercommand = "!fps" -- FPS BOOSERI AÇMA KOMUTU DEĞİ�
 habitatfpsbooster.fpsboosternpcmodel = "models/humans/group01/female_01.mdl" -- FPS BOOSTER NPCSININ MODELI
 habitatfpsbooster.fpsboosternpcismi = "FPS Arttirici" -- FPS BOOSTERIN NPCSININ USTUNDEKI YAZI
 habitatfpsbooster.butonrengi = Color(0,170,204,255)
-
+-----------------------------------------------------------------------------------------------
 
 --[[
 𝐑𝐄𝐍𝐊𝐋𝐄𝐑
