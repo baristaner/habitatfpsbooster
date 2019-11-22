@@ -5,7 +5,6 @@ habitatfpsbooster = {}
 include("baristaner/config.lua")
 
 
-
 local function fpsboostermenu()
 local fps = vgui.Create( "DFrame" )
 fps:SetPos( 5, 5 )
@@ -94,16 +93,10 @@ end
 hook.Add("OnPlayerChat", "fpsmenu", function(ply, strText)
     if (ply ~= LocalPlayer()) then return end
     strText = string.lower(strText) -- 
-    if (strText == "!fps") then
+    if (strText == habitatfpsbooster.fpsboostercommand) then
     fpsboostermenu()
     end
   end)
-
-
-
-
-
-
 
 concommand.Add( "habitatfpsboost", function( ply )
 		ply:ChatPrint( habitatfpsbooster.fpsboosteractivemsg )
@@ -130,19 +123,25 @@ concommand.Add( "habitatfpsboost", function( ply )
 		RunConsoleCommand( "cl_smooth", "0" )
 		RunConsoleCommand( "m9kgaseffect", "0" )
 		RunConsoleCommand( "mat_bloom_scalefactor_scalar", "1" )
-                RunConsoleCommand( "cl_detaildist", "2" )
-                RunConsoleCommand( "cl_detailfade", "1" )	
+    RunConsoleCommand( "cl_detaildist", "2" )
+    RunConsoleCommand( "cl_detailfade", "1" )	
 		RunConsoleCommand( "r_WaterDrawReflection", "0" )
-                RunConsoleCommand( "r_waterforceexpensive", "0" )
-                RunConsoleCommand( "r_shadows", "0" )
-                RunConsoleCommand( "mat_disable_bloom", "1" )
+    RunConsoleCommand( "r_waterforceexpensive", "0" )
+    RunConsoleCommand( "r_shadows", "0" )
+    RunConsoleCommand( "mat_disable_bloom", "1" )
 		RunConsoleCommand( "r_threaded_client_shadow_manager", "1" )
-                RunConsoleCommand( "r_threaded_particles", "1" )
-                RunConsoleCommand( "r_threaded_renderables", "1" )
-                RunConsoleCommand( "r_queued_ropes", "1" )
-                RunConsoleCommand( "r_drawmodeldecals", "0" )
-                RunConsoleCommand( "mat_queue_mode", "-1" )
-                RunConsoleCommand( "studio_queue_mode", "1" )	
+    RunConsoleCommand( "r_threaded_particles", "1" )
+    RunConsoleCommand( "r_threaded_renderables", "1" )
+    RunConsoleCommand( "r_queued_ropes", "1" )
+    RunConsoleCommand( "r_drawmodeldecals", "0" )
+    RunConsoleCommand( "mat_queue_mode", "-1" )
+    RunConsoleCommand( "studio_queue_mode", "1" )	
+    --TFA GUNS
+    if habitatfpsbooster.tfaguns then
+    RunConsoleCommand("cl_tfa_fx_impact_enabled","0")
+    RunConsoleCOmmand("cl_tfa_fx_gasblur", "0")
+    RunConsoleCOmmand("cl_tfa_fx_muzzlesmoke", "0")
+  end
 end)
 
 concommand.Add( "habitatfpsboostgerial", function( ply )
@@ -168,6 +167,12 @@ concommand.Add( "habitatfpsboostgerial", function( ply )
 		RunConsoleCommand( "cl_detailfade", "800" )
 		RunConsoleCommand( "cl_smooth", "1" )
 		RunConsoleCommand( "m9kgaseffect", "1" )
+        --TFA GUNS
+      if habitatfpsbooster.tfaguns then
+    RunConsoleCommand("cl_tfa_fx_impact_enabled","1")
+    RunConsoleCOmmand("cl_tfa_fx_gasblur", "1")
+    RunConsoleCOmmand("cl_tfa_fx_muzzlesmoke", "1")
+  end
 end)
 
 concommand.Add( "habitatfpsboostinternet", function( ply ) 
@@ -180,38 +185,49 @@ concommand.Add( "habitatfpsboostinternet", function( ply )
 		RunConsoleCommand( "cl_smoothtime", "0.1" )
 end)
 
+concommand.Add( "habitatmcore", function( ply ) 
+    LocalPlayer():ConCommand("gmod_mcore_test 1")
+    LocalPlayer():ConCommand("mat_queue_mode -1")
+    LocalPlayer():ConCommand("cl_threaded_bone_setup 1")
+    LocalPlayer():ConCommand("cl_threaded_client_leaf_system 1")
+    LocalPlayer():ConCommand("r_threaded_particles 1")
+    LocalPlayer():ConCommand("r_threaded_renderables 1")
+    LocalPlayer():ConCommand("r_queued_ropes 1")
+    LocalPlayer():ConCommand("studio_queue_mode 1")
+end)
+
 if habitatfpsbooster.enablefog then
-    hook.Add("SetupWorldFog", "habitatfpsbooster", function()
-        if globalFogDed then
-            render.FogMode(1)
-            render.FogStart(globalFogDed - 600)
-            render.FogEnd(globalFogDed - 200)
-            render.FogMaxDensity(1)
-            local col = Vector(0.8, 0.8, 0.8)
-            render.FogColor(col.x * 255, col.y * 255, col.z * 255)
+hook.Add("SetupWorldFog", "habitatfpsbooster", function()
+if globalFogDed then
+render.FogMode(1)
+render.FogStart(globalFogDed - 600)
+render.FogEnd(globalFogDed - 200)
+render.FogMaxDensity(1)
+local col = Vector(0.8, 0.8, 0.8)
+render.FogColor(col.x * 255, col.y * 255, col.z * 255)
 
-            return true
-        end
-    end)
+return true
+end
+end)
 
-    if habitatfpsbooster.enablefog then
-        hook.Add("SetupSkyboxFog", "habitatfpsboostersis", function()
-            if globalFogDed then
-                render.FogMode(MATERIAL_FOG_LINEAR)
-                render.FogStart((globalFogDed - 600) / 16 - (200 / 16))
-                render.FogEnd(globalFogDed / 16 - (200 / 16))
-                render.FogMaxDensity(1)
-                local col = Vector(0.8, 0.8, 0.8)
-                render.FogColor(col.x * 255, col.y * 255, col.z * 255)
+if habitatfpsbooster.enablefog then
+hook.Add("SetupSkyboxFog", "habitatfpsboostersis", function()
+if globalFogDed then
+render.FogMode(MATERIAL_FOG_LINEAR)
+render.FogStart((globalFogDed - 600) / 16 - (200 / 16))
+render.FogEnd(globalFogDed / 16 - (200 / 16))
+render.FogMaxDensity(1)
+local col = Vector(0.8, 0.8, 0.8)
+render.FogColor(col.x * 255, col.y * 255, col.z * 255)
 
-                return true
-            end
-        end)
-    else
-        return
-    end
+return true
+end
+end)
 else
-    return
+return
+end
+else
+return
 end
 
 
