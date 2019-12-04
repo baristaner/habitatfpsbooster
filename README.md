@@ -11,8 +11,6 @@ En iyi görsel için oyun ayarlarınızı yükseğe çekiniz bu sayede hem kalit
 * DarkRP,TTT,Sandbox vb. tüm modlarda çalışmaktadır.
 * Klasik FPS addonları gibi sadece Multi-Core Renderi açmaz
 * İçinde 23 adet konsol komutu vardır.
-* İnternet Optimizasyonu 
-* İçinde Lag düşürücü komut bulundurmaktadır.
 * NPC 
 * VGUI
 
@@ -36,7 +34,6 @@ Put your graphics settings to high if you dont wanna mess with quality.
 * Works on every gamemode DarkRP,Sandbox,TTT
 * No its not only enable multi-core rendering.
 * 23 console commands in.
-* Internet optimization.
 * NPC
 * vgui
 
