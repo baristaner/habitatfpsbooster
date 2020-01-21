@@ -170,8 +170,8 @@ concommand.Add( "habitatfpsboostgerial", function( ply )
         --TFA GUNS
       if habitatfpsbooster.tfaguns then
     RunConsoleCommand("cl_tfa_fx_impact_enabled","1")
-    RunConsoleCOmmand("cl_tfa_fx_gasblur", "1")
-    RunConsoleCOmmand("cl_tfa_fx_muzzlesmoke", "1")
+    RunConsoleCommand("cl_tfa_fx_gasblur", "1")
+    RunConsoleCommand("cl_tfa_fx_muzzlesmoke", "1")
   end
 end)
 
