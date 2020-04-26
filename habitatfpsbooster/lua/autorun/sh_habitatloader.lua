@@ -5,11 +5,11 @@ if SERVER then
 	include("server/sv_habitatfog.lua")
 
 	AddCSLuaFile("client/cl_fpsboost.lua")	
-	AddCSLuaFile("client/cl_habitatfog.lua")	
+	AddCSLuaFile("client/cl_mcore.lua")	
 end
 
 if CLIENT then
 
 	include("client/cl_fpsboost.lua")	
-	include("client/cl_habitatfog.lua")	
+	include("client/cl_mcore.lua")	
 end
