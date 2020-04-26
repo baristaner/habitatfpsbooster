@@ -5,7 +5,7 @@ AddCSLuaFile()
 -----------------------------------------------------------------------------------------------
 habitatfpsbooster.multicorerendering = true -- Oyuncu sunucuya girdiğinde gelen ekran
 habitatfpsbooster.enableserverfog = false
-habitatfpsbooster.tfaguns = true -- Sunucuda TFA Guns var ise true
+habitatfpsbooster.tfaguns = false -- Sunucuda TFA Guns var ise true
 habitatfpsbooster.enablefog = true -- [RESTART GEREKTIRIR] büyük harita kullanıyorsan uzağı renderlamaz sis oluşturur bu ayar bazı maplerde sorun çıkarabilir eğer haritana uymuyorsa false yap
 habitatfpsbooster.fpsboosteractivemsg = "[HabitatFPSBooster] FPS Booster Aktif Donma Olucaktir"
 habitatfpsbooster.fpsboostergerialmsg = "[HabitatFPSBooster] FPS Ayarlari Geriye Donduruldu"
